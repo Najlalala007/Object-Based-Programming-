@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Convenience Store</title>
+    <!-- Bootstrap CSS (or your preferred CSS framework) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Store</h1>
+        <form th:action="@{/store/add-to-cart}" method="post">
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" name="customerName" required>
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            <button type="submit">Add to Cart</button>
+        </form>
+        
+        <hr>
+        
+        <h2>Inventory</h2>
+        <ul>
+            <li th:each="product : ${products}">
+                <span th:text="${product.name}"></span> - 
+                <span th:text="${product.quantity}"></span> units available
+            </li>
+        </ul>
+        
+        <hr>
+        
+        <h2>Shopping Cart</h2>
+        <ul>
+            <li th:each="item : ${cartItems}">
+                <span th:text="${item.product.name}"></span> - 
+                <span th:text="${item.quantity}"></span> units
+            </li>
+        </ul>
+        
+        <hr>
+        
+        <form th:action="@{/store/checkout}" method="post">
+            <label for="checkoutCustomerName">Customer Name:</label>
+            <input type="text" id="checkoutCustomerName" name="customerName" required>
+            <button type="submit">Checkout</button>
+        </form>
+    </div>
+</body>
+</html>

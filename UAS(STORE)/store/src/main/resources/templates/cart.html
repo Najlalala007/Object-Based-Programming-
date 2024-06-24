@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through cart items -->
+            <th:block th:each="item : ${cartItems}">
+                <tr>
+                    <td th:text="${item.product.name}"></td>
+                    <td th:text="${item.quantity}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+    <form action="/store/cart" method="post">
+        <input type="text" name="customerName" placeholder="Customer Name">
+        <input type="text" name="productName" placeholder="Product Name">
+        <input type="number" name="quantity" placeholder="Quantity">
+        <button type="submit">Add to Cart</button>
+    </form>
+    <a href="/store">Back to Home</a>
+</body>
+</html>
+c
